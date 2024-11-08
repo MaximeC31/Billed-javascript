@@ -42,10 +42,13 @@ export default class {
 						try {
 							return {
 								...doc,
-								date: doc.date, // Modification date brut pour le trie
+								date: formatDate(doc.date),
 								status: formatStatus(doc.status),
 							};
 						} catch (e) {
+							// if for some reason, corrupted data was introduced, we manage here failing formatDate function
+							// log the error and return unformatted date in that case
+							console.log(e, 'for', doc);
 							return {
 								...doc,
 								date: doc.date,
@@ -53,18 +56,8 @@ export default class {
 							};
 						}
 					});
-
-					// Trie les factures par date du plus récent au plus ancien
-					bills.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-					// Convertir les dates triées au format front-end
-					const formattedBills = bills.map((bill) => {
-						bill.date = formatDate(bill.date);
-						return bill;
-					});
-
-					// Renvoi front avec dates formattées
-					return formattedBills;
+					console.log('length', bills.length);
+					return bills;
 				});
 		}
 	};
