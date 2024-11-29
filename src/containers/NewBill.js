@@ -45,7 +45,6 @@ export default class NewBill {
 				},
 			})
 			.then(({ fileUrl, key }) => {
-				console.log(fileUrl);
 				this.billId = key;
 				this.fileUrl = fileUrl;
 				this.fileName = fileName;
@@ -54,10 +53,6 @@ export default class NewBill {
 	};
 	handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(
-			'e.target.querySelector(`input[data-testid="datepicker"]`).value',
-			e.target.querySelector(`input[data-testid="datepicker"]`).value,
-		);
 		const email = JSON.parse(localStorage.getItem('user')).email;
 		const bill = {
 			email,
@@ -73,10 +68,12 @@ export default class NewBill {
 			status: 'pending',
 		};
 		this.updateBill(bill);
+		console.info('La note de frais a été créée avec succès :');
 		this.onNavigate(ROUTES_PATH['Bills']);
 	};
 
 	// not need to cover this function by tests
+	/* istanbul ignore next */
 	updateBill = (bill) => {
 		if (this.store) {
 			this.store

@@ -52,7 +52,8 @@ export default class Login {
 			});
 	};
 
-	// not need to cover this function by tests
+	// 	not need to cover this function by tests
+	/* istanbul ignore next */
 	login = (user) => {
 		if (this.store) {
 			return this.store
@@ -70,7 +71,8 @@ export default class Login {
 		}
 	};
 
-	// not need to cover this function by tests
+	// 	not need to cover this function by tests
+	/* istanbul ignore next */
 	createUser = (user) => {
 		if (this.store) {
 			return this.store
@@ -84,7 +86,6 @@ export default class Login {
 					}),
 				})
 				.then(() => {
-					console.log(`User with ${user.email} is created`);
 					return this.login(user);
 				});
 		} else {

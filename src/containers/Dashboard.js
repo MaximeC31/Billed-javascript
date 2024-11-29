@@ -15,7 +15,6 @@ export const filteredBills = (data, status) => {
 					selectCondition = bill.status === status;
 				} else {
 					/* istanbul ignore next */
-					// in prod environment
 					const userEmail = JSON.parse(localStorage.getItem('user')).email;
 					selectCondition =
 						bill.status === status && ![...USERS_TEST, userEmail].includes(bill.email);
@@ -82,8 +81,7 @@ export default class {
 		new Logout({ localStorage, onNavigate });
 	}
 
-	// [MODIFICATION] Réécriture complète de handleShowTickets
-	// On utilise this.listStates pour gérer l'état
+	// [MODIFICATION] On utilise this.listStates pour gérer l'état
 	handleShowTickets(e, bills, index) {
 		const isExpanded = this.listStates[index];
 		this.listStates[index] = !isExpanded;
@@ -105,8 +103,7 @@ export default class {
 		}
 	}
 
-	// [MODIFICATION] Réécriture complète de handleEditTicket
-	// On utilise this.billsSelection pour suivre l'état
+	// [MODIFICATION] On utilise this.billsSelection pour suivre l'état
 	handleEditTicket(e, bill, bills) {
 		if (this.billsSelection.has(bill.id)) {
 			this.billsSelection.delete(bill.id);
