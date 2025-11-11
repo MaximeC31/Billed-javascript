@@ -1,0 +1,12 @@
+node_modules/
+coverage/
+.idea/
+.DS_Store
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+*.sqlite
+backend/database_dev.sqlite
+backend/database_test.sqlite
